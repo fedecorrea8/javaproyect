@@ -21,6 +21,10 @@ function valorFinal(precio,cuota) {
 }
 
 let pedirPrecio = parseInt(prompt("Ingrese el precio del producto"));
+while(pedirPrecio === NaN){
+    let pedirPrecio = parseInt(prompt("Ingrese el precio del producto"));
+
+}
 let pedirCuotas = parseInt(prompt("Ingrese la cantidad de cuotas. Máximo 4 cuotas.")) 
 
 valorFinal(pedirPrecio,pedirCuotas);
