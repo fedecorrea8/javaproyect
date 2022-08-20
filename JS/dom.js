@@ -32,7 +32,7 @@ getPresentacion(){
 
 }
 
-
+window.onload = iniciar();
 
 let catalogo = new Array();
 
@@ -53,13 +53,19 @@ catalogo.push(new Productos(12,"BEBIDAS", "VINO", "QUARA", "6 X 750 ML", 2520, t
 
 
 
-let boton = document.getElementById("btn_crear");
-
 let productoCtn = document.getElementById("productoCtn");
 
-for(let i=0; i<= catalogo.length; i++){
-    let objProducto = catalogo[i];
-    crearCaja(objProducto);
+
+mostrarCaja();
+
+
+function mostrarCaja(){
+
+    for(let i=0; i<= catalogo.length; i++){
+
+        let objProducto =  catalogo[i];
+        crearCaja(objProducto);
+    }
 }
 
 function crearCaja(producto){
@@ -89,6 +95,38 @@ function crearCaja(producto){
 
     boton.addEventListener("click", ()=>{
         ctn.style.background = "red";
+        
     })
+
+    
+
+}
+
+
+
+function iniciar(){
+    let boton = document.getElementById("btn_crear");
+    boton.addEventListener("click", clickAgregar)
+}
+
+function clickAgregar(){
+
+    let categoria = document.getElementById("categoria");
+    let subCategoria = document.getElementById("subcategoria");
+    let marca = document.getElementById("marca");
+    let presentacion = document.getElementById("presentacion");
+    let precio = document.getElementById("precio");
+    let stock = document.getElementById("stock");
+    let imagen =  document.getElementById("imagen");
+
+    let id = catalogo.length + 1;
+
+    let input = new Productos(id, categoria.value, subCategoria.value, marca.value, presentacion.value, precio.value, stock.value, imagen.value);
+
+    localStorage.input = JSON.stringify(input);
+
+    catalogo.push(input);
+
+    crearCaja(input);
 
 }
